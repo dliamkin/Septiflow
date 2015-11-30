@@ -1,0 +1,136 @@
+<div style="max-width:600px; width: 100%; margin: 0 auto;">
+    <div class="col-sm-12">
+        <a href="#/" class="btn btn-info btn-block btn-lg" style="margin-top:20px;margin-bottom:30px">Back to Main Menu</a>
+        <center><h3>Wednesday, 11/11/2015</h3></center>
+        <div class="row" ng-repeat="job in jobs" style="-moz-border-radius: 18px 18px 18px 18px; -webkit-border-radius: 18px;  border-radius: 18px 18px 18px 18px; background-color:white; margin-bottom:20px;">
+            <!--div ng-repeat="j in job.workitems"-->
+            <div class="col-lg-12" style="margin-top:15px">
+                <div class="row" style="margin-bottom:10px;">
+                    <div class="col-xs-6">
+                        <center>
+                            <font size="6">{{job.time}}</font>
+                        </center>
+                    </div>
+                    <div class="col-xs-6">
+                        <center>
+                            <button class="btn btn-lg btn-success" ng-click="showWorkItems = !showWorkItems">Open Job</button>
+                        </center>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:10px;">
+                    <div class="col-xs-4" style="text-align: right;">
+                        <font size="3">
+                            <b>Name: </b>
+                        </font>
+                    </div>
+                    <div class="col-xs-8">
+                        <font size="3">{{job.name}}</font>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:10px;">
+                    <div class="col-xs-4" style="text-align: right;">
+                        <font size="3">
+                            <b>Address: </b>
+                        </font>
+                    </div>
+                    <div class="col-xs-8">
+                        <font size="3">{{job.address}}<br />{{job.city}}, {{job.state}} {{job.zip}}</font> 
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:10px;">
+                    <div class=" col-xs-offset-2 col-xs-8">
+                        <button class="btn btn-block" ng-class="{'btn-success' : toggle, 'btn-primary' : !toggle}" ng-click="toggle = !toggle">{{toggle && 'GPS Enabled!' || 'Enable GPS'}}</button>
+                    </div>
+                    <div class="col-xs-offset-2">
+                    </div>
+                </div>
+                <!--<div class="row" style="margin-bottom:10px;">
+                    <div class="col-xs-6">
+                        <button ng-click="jobs.splice($index, 1)" class="btn btn-success btn-block" style="margin-bottom:15px">DELETE</button>
+                    </div>
+                    <div class="col-xs-6">
+                        <button ng-click="showWorkItems = !showWorkItems" class="btn btn-success btn-block" style="margin-bottom:15px">WORK ON JOBS</button>
+                    </div>
+                </div>-->
+
+                <div class="row" ng-show="showWorkItems" style="margin-bottom:10px;">
+                    <!--start here-->
+                    <div class="container" style="max-width:570px" id="invoice">
+
+                        <div class="items-table">
+                            <div class="row" style="text-align:center; font-weight:bold">
+                                <div class="col-xs-5">Service</div>
+                                <div class="col-xs-1">Size</div>
+                                <div class="col-xs-1">Cost</div>
+                            </div>
+                            <div class="row invoice-item" ng-repeat="item in getIds(job._id)" ng-animate="'slide-down'" style="background:none">
+                                <div class="col-xs-5 input-container">
+                                    <!--<input ng-model="item.description" placeholder="Description" />-->
+                                    <select class="form-control list" style="border:0; box-shadow:inset 0 0px 0px">
+                                        <option value="0" selected>Select your Service</option>
+                                        <option value="100">Tank</option>
+                                        <option value="200">Install Portable Container</option>
+                                        <option value="300">Clean leftover Spills</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-1 input-container">
+                                    <input ng-model="item.qty" value="1" size="2" ng-validate="integer" />
+                                </div>
+                                <div class="col-xs-2 input-container">
+                                    <input ng-model="item.cost" value="0.00" ng-validate="number" size="6" placeholder="Cost">
+                                    <!--<span ng-model="item.cost">{{serviceSelected || currency }}</span>-->
+                                </div>
+                                <div class="col-xs-4 text-right input-container">
+                                    <div>
+                                        <label style="float:left">
+                                            <input type="checkbox" value="1" ng-model="service" ng-hide="true">
+                                            <span ng-if="service">
+                                                <span class="btn btn-sm btn-primary" ng-click="checkTrue(job._id, service, $index)">✔ done</span>
+                                            </span>
+                                            <span ng-if="!service">
+                                                <span class="btn btn-sm btn-default" ng-click="checkTrue(job._id, service, $index)">undone</span>
+                                            </span>
+                                        </label>
+                                        <div class="col-xs-2 remove-item-container">
+                                            <a ng-click="removeItem(job._id, $index)" class="btn btn-sm btn-danger">Cancel</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row invoice-item">
+                            <div class="col-xs-12 add-item-container">
+                                <a class="btn btn-sm btn-primary" ng-click='addItem(job._id)'>Add New Service</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end here-->
+                    <div class="col-lg-12" style="margin-bottom:10px;">
+                        <hr>
+                        <div class="col-xs-6">
+                            <!--{{jobs.doc.workitem.name}}-->
+                            <!--input class="form-control" placeholder="Service Name" /-->
+                            <font size="4">Total</font>
+                        </div>
+                        <div class="col-xs-3">
+                            <font size="3"><b>{{invoiceSubTotal(job._id) | currency: currencySymbol}}</b></font>
+                        </div>
+                        <div class="col-xs-2">
+                            <!--{{jobs.doc.workitem.cost}}-->
+                            <!--input class="form-control" placeholder="Service Cost" /-->
+                            <center>
+                                <span>
+                                    <button type="button" ng-click="jobs.splice($index, 1)" class="btn btn-sm {{forBut(job._id)}}">Save</button>
+                                </span>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <!--div class="col-lg-12">
+                    <button ng-click="addWorkItem(job.doc._id)" class="btn btn-block btn-warning">Add WorkItem</button>
+                </!--div-->
+            </div>
+            <!--div-->
+        </div>
+    </div>
+</div>

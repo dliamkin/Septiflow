@@ -1,0 +1,161 @@
+<div style="max-width:600px; width: 100%; margin: 0 auto;">
+    <div class="col-sm-12">
+        <a href="#/" class="btn btn-info btn-block btn-lg" style="margin-top:20px;margin-bottom:30px">Back to Main Menu</a>
+        <center><h3>Wednesday, 11/11/2015</h3></center>
+        <div class="row" ng-repeat="job in jobs" style="-moz-border-radius: 18px 18px 18px 18px; -webkit-border-radius: 18px;  border-radius: 18px 18px 18px 18px; background-color:white; margin-bottom:20px;">
+            <!--div ng-repeat="j in job.workitems"-->
+            <div class="col-lg-12" style="margin-top:15px">
+                <div class="row" style="margin-bottom:10px;">
+                    <div class="col-xs-6">
+                        <center>
+                            <font size="6">{{job.time}}</font>
+                        </center>
+                    </div>
+                    <div class="col-xs-6">
+                        <center>
+                            <button class="btn btn-lg btn-success" ng-click="showWorkItems = !showWorkItems">Open Job</button>
+                        </center>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:10px;">
+                    <div class="col-xs-4" style="text-align: right;">
+                        <font size="3">
+                            <b>Name: </b>
+                        </font>
+                    </div>
+                    <div class="col-xs-8">
+                        <font size="3">{{job.name}}</font>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:10px;">
+                    <div class="col-xs-4" style="text-align: right;">
+                        <font size="3">
+                            <b>Address: </b>
+                        </font>
+                    </div>
+                    <div class="col-xs-8">
+                        <font size="3">{{job.address}}<br />{{job.city}}, {{job.state}} {{job.zip}}</font>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:10px;">
+                    <div class="col-xs-6">
+                        <center>
+                            <font size="4">Job Status: Incomplete</font>
+                        </center>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="btn-group btn-group-justified" role="group">
+                            <div class="btn-group" role="group" ng-repeat="status in job.statuscollection" ng-init="innerIndex = $index">
+                                <button type="button" class="btn btn-default" ng-class="{ 'btn-info': status.isActive === true}" ng-click="itemClicked(status, job)">{{status.name}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-show="showWorkItems" style="margin-bottom:10px;">
+                    <!--start here-->
+                    <div class="container" style="max-width:570px" id="invoice">
+
+                        <div class="items-table">
+                            <div class="row" style="text-align:center; font-weight:bold">
+                                <div class="col-xs-5">Service</div>
+                                <div class="col-xs-1">Size</div>
+                                <div class="col-xs-1">Cost</div>
+                            </div>
+                            <div class="row invoice-item" ng-repeat="item in getIds(job._id)" ng-animate="'slide-down'" style="background:none">
+                                <div class="col-xs-5 input-container">
+                                    <span>{{item.service}}</span>
+                                </div>
+                                <div class="col-xs-1 input-container">
+                                    <span> {{item.size}} </span>
+                                </div>
+                                <div class="col-xs-2 input-container">
+                                    <span>{{item.cost}}</span>
+                                </div>
+                                <div class="col-xs-4 text-right input-container">
+                                    <div>
+                                        <label style="float:left">
+                                            <input type="checkbox" value="1" ng-model="service" ng-hide="true">
+                                            <span ng-if="service">
+                                                <span class="btn btn-sm btn-primary" ng-click="checkTrue(job._id, service, $index)">✔ done</span>
+                                            </span>
+                                            <span ng-if="!service">
+                                                <span class="btn btn-sm btn-default" ng-click="checkTrue(job._id, service, $index)">undone</span>
+                                            </span>
+                                        </label>
+                                        <div class="col-xs-2 remove-item-container">
+                                            <a ng-click="removeItem(job._id, $index)" class="btn btn-sm btn-danger">Cancel</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row invoice-item">
+                            <div class="col-xs-12 add-item-container">
+                                <a class="btn btn-sm btn-primary" ng-click='addItem(job._id)'>Add New Service</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end here-->
+                    <div class="col-lg-12" style="margin-bottom:10px;">
+                        <hr>
+                        <div class="col-xs-6">
+                            <!--{{jobs.doc.workitem.name}}-->
+                            <!--input class="form-control" placeholder="Service Name" /-->
+                            <font size="4">Total</font>
+                        </div>
+                        <div class="col-xs-3">
+                            <font size="3"><b>{{invoiceSubTotal(job._id) | currency: currencySymbol}}</b></font>
+                        </div>
+                        <div class="col-xs-2">
+                            <!--{{jobs.doc.workitem.cost}}-->
+                            <center>
+                                <span>
+                                    <button type="button" ng-click="jobs.splice($index, 1)" class="btn btn-sm {{forBut(job._id)}}">Save</button>
+                                </span>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Starts Here -->
+<div bn-modals ng-show="subview" class="m-modals" ng-switch="subview">
+    <div ng-switch-when="alert" class="modal">
+        <div class="col-xs-15 row" style="text-align:center; font-weight:bold">
+            <div class="col-xs-8">Service</div>
+            <div class="col-xs-2">Size</div>
+            <div class="col-xs-1">Cost</div>
+        </div>
+        <div class="col-xs-8 input-container">
+            <select ng-model="selectedService" ng-change="serviceUpdate(selectedService)" class="col-xs-4 form-control list" style="border:0; box-shadow:inset 0 0px 0px">
+                <option value="" selected>Select your Service</option>
+                <option value="Tank">Tank</option>
+                <option value="Install Portable Container">Install Portable Container</option>
+                <option value="Clean leftover Spills">Clean leftover Spills</option>
+            </select>
+        </div>
+        <div class="col-xs-2 input-container">
+            <span ng-if="selectedService == 'Tank'">
+                <input value="" size="2" ng-validate="integer" placeholder="Size" ng-model="size" ng-change="sizeUpdate(size)" enabled />
+            </span>
+            <span ng-if="selectedService != 'Tank'">
+                <span ng-model="size" ng-change="sizeUpdate(0)"></span>
+            </span>
+        </div>
+        <div class="col-xs-2 input-container">
+            <span>${{cost}}</span>
+        </div>
+
+        <div class="row invoice-item">
+            <div class="add-item-container">
+                <a class="col-xs-12 btn btn-sm {{addToListBut}}" ng-click='addItem(clientId); close();' style="margin: 20px 0 0 0">Add to List</a>
+                <a class="col-xs-12 btn btn-sm btn-danger" ng-click='close();' style="margin: 5px 0 0 0">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Ends Here -->

@@ -1,0 +1,86 @@
+<div style="max-width:600px; width: 100%; margin: 0 auto;">
+    <div class="col-sm-12"> 
+        <a href="#/" class="btn btn-info btn-block btn-lg" style="margin-top:20px;margin-bottom:30px">Back to Main Menu</a>
+        <label class="animate infinite slideInDown">Job Name:</label>
+        <input class="form-control" placeholder="Job Name?" ng-model="jobName" autofocus>
+        <label style="margin-top:10px">Job Time:</label>
+        <!--<div class='input-group date' id='datetimepicker3'>
+            <input type='text' class="form-control" ng-model="jobTime" />
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-time"></span>
+            </span>
+        </div>-->
+        <input class="form-control" placeholder="Job Time?" ng-model="jobTime" autofocus>
+        <button class="btn btn-success" type="submit" ng-click="addJob()" style="margin-bottom:20px;">Add Job</button>
+
+        <div class="col-lg-12" ng-repeat="job in jobs" style="-moz-border-radius: 18px 18px 18px 18px; -webkit-border-radius: 18px;  border-radius: 18px 18px 18px 18px; background-color:white; margin-bottom:20px;">
+            <div class="row" style="margin-top:15px">
+                <div class="row" style="margin-bottom:10px;">
+                    <div class="col-xs-6">
+                        <center>
+                            <font size="6">{{job.doc.time}}</font>
+                        </center>
+                    </div>
+                    <div class="col-xs-6">
+                        <center>
+                            <button class="btn btn-lg btn-success" ng-click="deleteJob()">See Invoice</button>
+                        </center>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:10px;">
+                    <div class="col-xs-4" style="text-align: right;">
+                        <font size="3">
+                            <b>Name: </b>
+                        </font>
+                    </div>
+                    <div class="col-xs-8">
+                        <font size="3">Adam Smith</font>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:10px;">
+                    <div class="col-xs-4" style="text-align: right;">
+                        <font size="3">
+                            <b>Address: </b>
+                        </font>
+                    </div>
+                    <div class="col-xs-8">
+                        <font size="3">1234 Test Ave., Apt.204<br />TestCity, Test Providence 12345</font>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:10px;">
+                    <div class="col-xs-4" style="text-align: right;">
+                        <font size="3">
+                            <b>Jobs: </b>
+                        </font>
+                    </div>
+                    <div class="col-xs-8">
+                        <font size="3">{{job.doc.name}}</font>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:10px;">
+                    <div class="col-xs-6">
+                        <button ng-click="jobs.splice($index, 1)" class="btn btn-success btn-block" style="margin-bottom:15px">DELETE</button>
+                    </div>
+                    <div class="col-xs-6">
+                        <button ng-click="showWorkItems = !showWorkItems" class="btn btn-success btn-block" style="margin-bottom:15px">WORK ON JOBS</button>
+                    </div>
+                </div>
+                <div class="row" ng-show="showWorkItems" ng-repeat="workitem in job.doc.workitems" style="margin-bottom:10px;">
+                    <div class="col-lg-12" style="margin-bottom:10px;">
+                        <div class="col-xs-6">
+                            <!--{{jobs.doc.workitem.name}}-->
+                            <input class="form-control" ng-model="workitemname" placeholder="Service Name" />
+                        </div>
+                        <div class="col-xs-6">
+                            <!--{{jobs.doc.workitem.cost}}-->
+                            <input class="form-control" ng-model="workitemcost" placeholder="Service Cost" />
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <button ng-click="addWorkItem(job.doc._id)" class="btn btn-block btn-warning">Add WorkItem</button><!--pass in job.doc._id-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

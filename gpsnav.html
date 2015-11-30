@@ -1,0 +1,34 @@
+<div style="max-width:600px; width: 100%; margin: 0 auto;">
+    <div class="col-sm-12"> 
+        <a href="#/" class="btn btn-info btn-block btn-lg" style="margin-top:20px;margin-bottom:30px">Back to Main Menu</a>
+        <h1>LaunchNavigator Example</h1>
+
+        <!-- iOS Only -->
+        <div id="prefer-google-maps" class="ios-only example">
+            <div>
+                <label>Prefer Google Maps? (iOS only)</label>
+                <input type="checkbox" />
+            </div>
+        </div>
+
+        <!-- Android Only -->
+        <div id="navigation-mode" class="android-only example">
+            <div>
+                <label>Navigation mode (Android only)</label>
+                <select>
+                    <option value="maps" selected="selected">Maps</option>
+                    <option value="turn-by-turn">Turn-by-turn</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="all-2" class="example">
+            <p>Current location to destination by place name</p>
+            <div>
+                <label>Destination Name: </label>
+                <input class="dname" value="London, UK" />
+            </div>
+            <button ng-click="init()">Navigate</button>
+        </div>
+    </div>
+</div>

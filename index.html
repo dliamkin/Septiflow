@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta http-equiv="Content-Security-Policy" content="script-src https://*.googleapis.com https://*.google.com http://localhost 'unsafe-inline' 'unsafe-eval' 'self'">
+        <meta name=" viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/bootstrap3.min.css">
+        <meta name=" viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/animate.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="js/bootstrap3.min.js"></script>
+        <script src="js/moment.js"></script>
+        <script src="js/angular.min.js"></script>
+        <script src="js/angular-route.min.js"></script>
+        <script src="js/routing.js"></script>
+        <script src="js/bootstrap-datetimepicker.js"></script>
+        <title>Startbutton</title>
+        <style>
+            .items-table .row {
+                line-height: 3em;
+            }
+
+            .items-table input {
+                line-height: 1.5em;
+            }
+
+            input, textarea {
+                border: 1px solid #FFF;
+            }
+
+            .container input:focus {
+                border: 1px solid #CCC;
+            }
+
+            div.container {
+                width: 570px;
+            }
+            .items-table select {
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+            }
+
+            
+            /********CSS for MODAL******/
+
+            div.m-modals {
+	            background-color: rgba( 0, 0, 0, 0.8 ) ;
+	            bottom: 0px ;
+	            left: 0px ;
+	            position: fixed ;
+	            right: 0px ;
+	            top: 0px ;
+            }
+            div.m-modals > .modal {
+	            background-color: #FAFAFA ;
+	            border-radius: 3px 3px 3px 3px ;
+	            box-sizing: border-box ;
+                -moz-box-sizing: border-box ;
+	            padding: 20px 20px 20px 20px ;
+	            position: fixed ;
+	            left: 50% ;
+	            margin-left: -200px ;
+	            top: 200px ;
+	            width: 400px ;
+                display: block;
+                height: 165px;
+            }
+        </style>
+    </head>
+    <body style="background-color:#E4E4E4;">
+        <!--<nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Septiflow Drivers</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#/"> Home</a></li>
+                    <li><a href="#jobs"> Jobs</a></li>
+                    <li><a href="#GPS"> GPS</a></li>
+                </ul>
+            </div>
+        </nav>-->
+
+        <div id="main">
+            <div ng-view></div>
+        </div>
+
+        <script type="text/javascript" src="bower_components/pouchdb.min.js"></script>
+        <script type="text/javascript" src="js/model.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script src="js/index.js"></script>
+        <script src="js/home.js"></script>
+        <!--<script src="js/jobs.js"></script>-->
+        <script src="js/jobssample.js"></script>
+        <script src="js/addingjob.js"></script>
+        <script src="js/gps.js"></script>
+        <script src="js/gpsnav.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
+</html>
