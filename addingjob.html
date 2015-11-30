@@ -38,12 +38,12 @@
                     </div>
                 </div>
                 <div class="row" style="margin-bottom:10px;">
-                    <div class="col-xs-6">
+                    <div class="col-xs-12">
                         <center>
                             <font size="4">Job Status: Incomplete</font>
                         </center>
                     </div>
-                    <div class="col-xs-6">
+                    <div class="col-xs-12">
                         <div class="btn-group btn-group-justified" role="group">
                             <div class="btn-group" role="group" ng-repeat="status in job.statuscollection" ng-init="innerIndex = $index">
                                 <button type="button" class="btn btn-default" ng-class="{ 'btn-info': status.isActive === true}" ng-click="itemClicked(status, job)">{{status.name}}</button>
@@ -54,7 +54,7 @@
 
                 <div class="row" ng-show="showWorkItems" style="margin-bottom:10px;">
                     <!--start here-->
-                    <div class="container" style="max-width:570px" id="invoice">
+                    <div class="col-xs-12" style="max-width:570px" id="invoice">
 
                         <div class="items-table">
                             <div class="row" style="text-align:center; font-weight:bold">
@@ -63,7 +63,7 @@
                                 <div class="col-xs-1">Cost</div>
                             </div>
                             <div class="row invoice-item" ng-repeat="item in getIds(job._id)" ng-animate="'slide-down'" style="background:none">
-                                <div class="col-xs-5 input-container">
+                                <div class="col-xs-4 input-container">
                                     <span>{{item.service}}</span>
                                 </div>
                                 <div class="col-xs-1 input-container">
@@ -72,7 +72,7 @@
                                 <div class="col-xs-2 input-container">
                                     <span>{{item.cost}}</span>
                                 </div>
-                                <div class="col-xs-4 text-right input-container">
+                                <div class="col-xs-5 text-right input-container">
                                     <div>
                                         <label style="float:left">
                                             <input type="checkbox" value="1" ng-model="service" ng-hide="true">
