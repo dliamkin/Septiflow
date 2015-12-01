@@ -1,5 +1,5 @@
-septiflowAppRouter.controller("addingjobController", ['$scope', '$timeout', '$location', 'modelsrv', '$routeParams', 'DEFAULT_INVOICE', 'LocalStorage', 'Currency', 'modals',
-    function ($scope, $timeout, $location, modelsrv, $routeParams, DEFAULT_INVOICE, LocalStorage, Currency, modals) {
+septiflowAppRouter.controller("addingjobController", ['$scope', '$timeout', '$location', 'modelsrv', 'camerasrv', '$routeParams', 'DEFAULT_INVOICE', 'LocalStorage', 'Currency', 'modals',
+    function ($scope, $timeout, $location, modelsrv, camerasrv, $routeParams, DEFAULT_INVOICE, LocalStorage, Currency, modals) {
         $scope.gpsstatus = 'Route to GPS';
 
         //temporary variable to get different time
