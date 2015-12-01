@@ -26,6 +26,7 @@ var app = {
             console.log('This app is running on ' + device.platform);
             app._runningOnDevice = true;
             angular.bootstrap(document, ['septiflowApp']);  /////--------------->ANGULAR INITIALIZES HERE
+            camera.initialize();
         }
         else {
             app.logError(me, 'onDeviceReady', new Error('The onDeviceReady event fired, but the device object is undefined'));
