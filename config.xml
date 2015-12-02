@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.startbutton.septiflow.driver" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>SeptiflowDriversMobile</name>
-    <description>Hello World sample application that responds to the deviceready event.</description>
+    <name>Septiflow</name>
+    <description>Septiflow Application</description>
     <author email="support@phonegap.com" href="http://phonegap.com">PhoneGap Team</author>
     <content src="index.html" />
     <preference name="permissions" value="none" />
@@ -20,12 +20,12 @@
     <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
     <!--<gap:plugin name="org.apache.cordova.battery-status" src="npm" />
-    <gap:plugin name="org.apache.cordova.camera" src="npm" />
-    <gap:plugin name="org.apache.cordova.media-capture" src="npm" />
+    <gap:plugin name="org.apache.cordova.media-capture" src="npm" /> 
     <gap:plugin name="org.apache.cordova.console" src="npm" />
     <gap:plugin name="org.apache.cordova.contacts" src="npm" />-->
     <gap:plugin name="org.apache.cordova.device" src="npm" />
     <gap:plugin name="org.apache.cordova.device-orientation" src="npm" />
+    <gap:plugin name="org.apache.cordova.camera" src="npm" />
     <!--<gap:plugin name="org.apache.cordova.device-motion" src="npm" />
     <gap:plugin name="org.apache.cordova.dialogs" src="npm" />
     <gap:plugin name="org.apache.cordova.file" src="npm" />
