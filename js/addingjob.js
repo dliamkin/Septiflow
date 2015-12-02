@@ -1,31 +1,27 @@
-septiflowAppRouter.controller("addingjobController", ['$scope', '$cordovaCamera', '$timeout', '$location', 'modelsrv', '$routeParams', 'DEFAULT_INVOICE', 'LocalStorage', 'Currency', 'modals',
-    function ($scope, $cordovaCamera, $timeout, $location, modelsrv, $routeParams, DEFAULT_INVOICE, LocalStorage, Currency, modals) {
-
-        document.addEventListener("deviceready", function () {
-
-            var options = {
-                quality: 50,
-                destinationType: Camera.DestinationType.DATA_URL,
-                sourceType: Camera.PictureSourceType.CAMERA,
-                allowEdit: true,
-                encodingType: Camera.EncodingType.JPEG,
-                targetWidth: 100,
-                targetHeight: 100,
-                popoverOptions: CameraPopoverOptions,
-                saveToPhotoAlbum: false,
-                correctOrientation: true
-            };
-
-            $cordovaCamera.getPicture(options).then(function (imageData) {
-                var image = document.getElementById('myImage');
-                image.src = "data:image/jpeg;base64," + imageData;
-            }, function (err) {
-                // error
-            });
-
-        }, false);
-
+septiflowAppRouter.controller("addingjobController", ['$scope', '$timeout', '$location', 'modelsrv', '$routeParams', 'DEFAULT_INVOICE', 'LocalStorage', 'Currency', 'modals',
+    function ($scope, $timeout, $location, modelsrv, $routeParams, DEFAULT_INVOICE, LocalStorage, Currency, modals) {
         $scope.gpsstatus = 'Route to GPS';
+
+        var options = {
+            quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL,
+            sourceType: Camera.PictureSourceType.CAMERA,
+            allowEdit: true,
+            encodingType: Camera.EncodingType.JPEG,
+            targetWidth: 100,
+            targetHeight: 100,
+            popoverOptions: CameraPopoverOptions,
+            saveToPhotoAlbum: false,
+            correctOrientation: true
+        };
+
+        $cordovaCamera.getPicture(options).then(function (imageData) {
+            var image = document.getElementById('myImage');
+            image.src = "data:image/jpeg;base64," + imageData;
+        }, function (err) {
+            // error
+        });
+
 
         //temporary variable to get different time
         $scope.date = new Date();
